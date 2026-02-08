@@ -1,0 +1,86 @@
+html { scroll-behavior: smooth; }
+
+.svg-mount {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.svg-mount svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.back-to-top {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  border-radius: 999px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+.back-to-top.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+
+
+/* Keep the correct Typekit font, but don't override spacing globally */
+.svg-mount svg text,
+.svg-mount svg tspan {
+  font-family: "degular-display", "degular", sans-serif !important;
+  font-kerning: normal !important;
+}
+
+/* Optional: helps consistency without adding gaps */
+.svg-mount svg {
+  text-rendering: geometricPrecision;
+}
+
+/* Fix occasional per-letter baseline shifts in Illustrator-exported SVG text */
+.svg-mount svg text,
+.svg-mount svg tspan {
+  dominant-baseline: alphabetic;
+  alignment-baseline: alphabetic;
+}
+
+.anchor {
+  position: relative;
+  height: 0;
+}
+
+/* Optional: if you have a fixed header */
+.anchor {
+  scroll-margin-top: 80px; /* adjust if needed */
+}
+
+/* 1) Make your TOC groups clickable no matter what */
+.svg-mount svg g[id$="-link"] {
+  cursor: pointer;
+  pointer-events: all;
+}
+
+/* 2) Stop common Illustrator “invisible” blockers from swallowing clicks */
+.svg-mount svg rect[fill="none"],
+.svg-mount svg path[fill="none"],
+.svg-mount svg polygon[fill="none"],
+.svg-mount svg polyline[fill="none"],
+.svg-mount svg line[fill="none"] {
+  pointer-events: none;
+}
+
+/* 3) If Illustrator used clipPaths/masks with shapes that still block, disable those too */
+.svg-mount svg defs,
+.svg-mount svg clipPath,
+.svg-mount svg mask {
+  pointer-events: none;
+}
